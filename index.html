@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <h1>Scripts Run</h1>
+        <label for="betan">N:</label><input id="betan" class="betan" type="text" value="100"></input>
+        <input class="beta" type="submit" value="run"></input>
+        <div class="message"></div>
+        <div class="message2"></div>
+        <script type="text/javascript">
+            let doAjax = function(url, cb){
+                var xhttp = new XMLHttpRequest();
+
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        let data = JSON.parse(this.response);
+                        cb(data);
+                    }
+                }
+
+                xhttp.open("GET", url, true);
+                xhttp.send();
+            }
+
+            document.addEventListener("DOMContentLoaded" , function(){
+                document.querySelector(".beta").addEventListener("click", function(e){
+                    e.preventDefault();
+                    let N = document.querySelector(".betan").value;
+
+                    doAjax("/beta2.php?N=" + N, function(data){
+                        if (data.status == "ok" ) {
+                            document.querySelector(".message2").innerHTML = "ok";
+
+                            setTimeout(function(){
+                                document.querySelector(".message2").innerHTML = "";
+                            }, 2000)
+                        }
+                    });
+                } )
+
+                setInterval(function(){
+                    doAjax("/gamma2.php", function(data){
+                        if (data.status == "ok" ) {
+                            document.querySelector(".message").innerHTML = data.category + "; seconds: " + data.delta;
+                        }
+                    });
+                }, 1000);
+            })
+        </script>
+    </body>
+</html>
