@@ -2,7 +2,7 @@
 include_once("pg.php");
 
 $db = new DB();
-$db->connect("host=localhost dbname=postgres user=postgres password=abbCdd12");
+$db->connect();
 
 $categories = [    
     ["name" => "продукты", "id" => 1],

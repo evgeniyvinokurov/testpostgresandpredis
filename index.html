@@ -29,7 +29,7 @@
                     e.preventDefault();
                     let N = document.querySelector(".betan").value;
 
-                    doAjax("/beta2.php?N=" + N, function(data){
+                    doAjax("/beta.php?N=" + N, function(data){
                         if (data.status == "ok" ) {
                             document.querySelector(".message2").innerHTML = "ok";
 
@@ -41,7 +41,7 @@
                 } )
 
                 setInterval(function(){
-                    doAjax("/gamma2.php", function(data){
+                    doAjax("/gamma.php", function(data){
                         if (data.status == "ok" ) {
                             document.querySelector(".message").innerHTML = data.category + "; seconds: " + data.delta;
                         }

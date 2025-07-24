@@ -3,7 +3,7 @@
 $N = intval($_GET["N"]);
 
 for($i=0; $i<$N; $i++) {
-    exec("php alpha2.php");
+    exec("php alpha.php");
 }
 
 $data = ["status" => "ok"];

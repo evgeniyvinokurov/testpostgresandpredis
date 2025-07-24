@@ -3,8 +3,10 @@
 class DB {
     private $conn;
 
-    function connect($connString){
-        $this->conn = pg_connect($connString) or die('Could not connect: ' . pg_last_error());
+    private $connString = "host=localhost dbname=testwork user=postgres password=abbCdd12";
+
+    function connect(){
+        $this->conn = pg_connect($this->connString) or die('Could not connect: ' . pg_last_error());
     }
 
     //// inserts

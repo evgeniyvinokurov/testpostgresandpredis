@@ -26,7 +26,7 @@ try {
             echo "Обрабатываю задачу: $command\n";
             
             $db = new DB();
-            $db->connect("host=localhost dbname=postgres user=postgres password=abbCdd12");
+            $db->connect();
 
             $products = $db->getProducts();
             $product = intval($products["ids"][strval(array_rand($products["ids"]))]);
